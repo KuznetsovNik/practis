@@ -14,24 +14,21 @@ public class Loader                                          // Класс Loade
         vasya.pee();
         vasya.pee();
         System.out.println("Vasya weight:" + vasya.getWeight());
-        System.out.println(vasya.getFeedFood());
-
         System.out.println();
 
         Cat toma = new Cat();                                     // Второй кот
         System.out.println("Toma weight:" + toma.getWeight());
         toma.feed(350.7);
+        toma.feed(10.6);
         System.out.println("Toma weight:" + toma.getWeight());
         System.out.println("Toma was eat: "+ toma.getFeedFood() + "gm of food"); // Использование Метода Сумма съеденной еды
-
         System.out.println();
 
         Cat kyzya = new Cat();                                    // Третий кот
         System.out.println("Kyzya weight:" + kyzya.getWeight());
         kyzya.drink(330.30);
         System.out.println("Kyzya weight:" + kyzya.getWeight());
-        System.out.println(kyzya.getStatus());
-
+        System.out.println("Kyzya is " + kyzya.getStatus());
         System.out.println();
 
         Cat masha = new Cat();                                     // Четвертый кот
@@ -40,8 +37,7 @@ public class Loader                                          // Класс Loade
         for (;masha.getWeight() < 9000;) {                         // Цикл Перекормить кошку
             masha.feed(1.5);
         }
-        System.out.println(masha.getStatus());
-
+        System.out.println("Masha is " + masha.getStatus());
         System.out.println();
 
         Cat monika = new Cat();                                       // Пятый кот
@@ -49,34 +45,39 @@ public class Loader                                          // Класс Loade
         while (monika.getWeight() > 0) {                              // Оператор Замяукать кошку
             monika.meow();
         }
-        System.out.println(monika.getStatus());
-
+        System.out.println("Monika is " + monika.getStatus());
         System.out.println();
 
         Cat mike = new Cat(8500.00);                           //  Шестой кот
         System.out.println("Mike weight:" + mike.getWeight());
         mike.setColorsCats(ColorsCats.BLACK_CAT);
         System.out.println(mike.getColors());
-
         System.out.println();
 
         Cat barsik = getKitten();                                            // Седьмой кот - котёнок
         System.out.println("Kitten Barsik weight:" + barsik.getWeight());
-
         System.out.println();
 
         System.out.println("How many cats: "+ Cat.getCount());               // Использованиие Метода Общее число кошек
 
         Cat filimon = new Cat(5000.00);                                // Восьмой кот
         System.out.println("Filimon weight:" + filimon.getWeight());
-
         System.out.println();
 
-        Cat djesika = new Cat (5000.00);                               // Девятый кот
+        Cat djesika = new Cat (filimon);                                     // Девятый кот - клон
         System.out.println("Djesika weight:" + djesika.getWeight());
-
+        filimon.feed(250.00);
+        djesika.feed(1500.00);
+        System.out.println();
+        System.out.println("Filimon weight:" + filimon.getWeight());
+        System.out.println("Djesika weight:" + djesika.getWeight());
         System.out.println();
 
         System.out.println("How many cats: "+ Cat.getCount());               // Использованиие Метода Общее число кошек
+
+        Cat barbara =  new Cat(12000);                                // Создание кошки с превышенным весом
+
+        System.out.println("How many cats: "+ Cat.getCount());               // Использованиие Метода Общее число кошек
+
     }
 }
