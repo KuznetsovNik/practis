@@ -33,7 +33,6 @@ public class Loader                                          // Класс Loade
 
         Cat masha = new Cat();                                     // Четвертый кот
         System.out.println("Masha weight:" + masha.getWeight());
-        System.out.println("How many cats: "+ Cat.getCount());      // Использованиие Метода Общее число кошек
         for (;masha.getWeight() < 9000;) {                         // Цикл Перекормить кошку
             masha.feed(1.5);
         }
@@ -58,8 +57,6 @@ public class Loader                                          // Класс Loade
         System.out.println("Kitten Barsik weight:" + barsik.getWeight());
         System.out.println();
 
-        System.out.println("How many cats: "+ Cat.getCount());               // Использованиие Метода Общее число кошек
-
         Cat filimon = new Cat(5000.00);                                // Восьмой кот
         System.out.println("Filimon weight:" + filimon.getWeight());
         System.out.println();
@@ -69,11 +66,6 @@ public class Loader                                          // Класс Loade
         filimon.feed(250.00);
         djesika.feed(1500.00);
         System.out.println();
-        System.out.println("Filimon weight:" + filimon.getWeight());
-        System.out.println("Djesika weight:" + djesika.getWeight());
-        System.out.println();
-
-        System.out.println("How many cats: "+ Cat.getCount());               // Использованиие Метода Общее число кошек
 
         Cat barbara =  new Cat(12000);                                // Создание кошки с превышенным весом
 

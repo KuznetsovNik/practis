@@ -8,12 +8,9 @@ public class Cat {                                              // Класс Ca
     private double allFood;
     private static int countCats;
     public ColorsCats colors;
-    private boolean isAlive = MIN_WEIGHT < weight && weight < MAX_WEIGHT;
-
 
     public Cat() {                                              // Конструктор Cat
         this(1500.0 + 3000.0 * Math.random());
-        countCats++;
     }
 
     public Cat(double  weight) {                               // Конструктор Cat
@@ -21,12 +18,15 @@ public class Cat {                                              // Класс Ca
         this.originWeight = weight;
         if (weight > MAX_WEIGHT){
             System.out.println("Too much weight, the cat is dead:(");
+            countCats--;
         }
+        countCats++;
     }
 
     public Cat(Cat clone){                                       // Конструктор Cat
         this.weight = clone.weight;
         this.originWeight = clone.weight;
+        countCats++;
     }
 
     public Cat copy() {                                         // Метод Клонирования
@@ -41,32 +41,44 @@ public class Cat {                                              // Класс Ca
     }
 
     public void meow() {                                       // Метод Мяу
+        boolean isAlive = MIN_WEIGHT < weight && weight < MAX_WEIGHT;
         weight = weight - 1;
         System.out.println("Meow");
-        if (isAlive = false){
+        if ( isAlive == true && MAX_WEIGHT < weight ) {
+            countCats--;
+        } else if ( isAlive == true && weight < MIN_WEIGHT){
             countCats--;
         }
     }
 
     public void pee() {                                        // Метод Туалет
+        boolean isAlive = MIN_WEIGHT < weight && weight < MAX_WEIGHT;
         weight = weight - 100;
         System.out.println("Poop");
-        if (isAlive = false){
+        if ( isAlive == true && MAX_WEIGHT < weight || weight < MIN_WEIGHT) {
+            countCats--;
+        } else if ( isAlive == true && weight < MIN_WEIGHT){
             countCats--;
         }
     }
 
     public void feed(Double amount) {                          // Метод Покормить
+        boolean isAlive = MIN_WEIGHT < weight && weight < MAX_WEIGHT;
         weight = weight + amount;
         this.allFood = allFood + amount;
-        if (isAlive = false){
+        if ( isAlive == true && MAX_WEIGHT < weight || weight < MIN_WEIGHT) {
+            countCats--;
+        } else if ( isAlive == true && weight < MIN_WEIGHT){
             countCats--;
         }
     }
 
     public void drink(Double amount) {                         // Метод Попить
+        boolean isAlive = MIN_WEIGHT < weight && weight < MAX_WEIGHT;
         weight = weight + amount;
-        if (isAlive = false){
+        if ( isAlive == true && MAX_WEIGHT < weight || weight < MIN_WEIGHT) {
+            countCats--;
+        } else if ( isAlive == true && weight < MIN_WEIGHT){
             countCats--;
         }
     }
