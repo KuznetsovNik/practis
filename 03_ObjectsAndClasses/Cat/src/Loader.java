@@ -58,13 +58,14 @@ public class Loader                                          // Класс Loade
         System.out.println();
 
         Cat filimon = new Cat(5000.00);                                // Восьмой кот
+        filimon.feed(250.00);
         System.out.println("Filimon weight:" + filimon.getWeight());
         System.out.println();
 
         Cat djesika = new Cat (filimon);                                     // Девятый кот - клон
         System.out.println("Djesika weight:" + djesika.getWeight());
-        filimon.feed(250.00);
         djesika.feed(1500.00);
+        System.out.println("Djesika was eat: "+ djesika.getFeedFood() + "gm of food");
         System.out.println();
 
         Cat barbara =  new Cat(12000);                                // Создание кошки с превышенным весом
