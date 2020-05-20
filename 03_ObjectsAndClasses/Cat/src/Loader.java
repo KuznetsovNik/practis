@@ -72,5 +72,10 @@ public class Loader                                          // Класс Loade
 
         System.out.println("How many cats: "+ Cat.getCount());               // Использованиие Метода Общее число кошек
 
+
+
+
+
+
     }
 }

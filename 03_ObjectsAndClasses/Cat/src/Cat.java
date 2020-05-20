@@ -19,20 +19,18 @@ public class Cat {                                              // Класс Ca
         if (weight < MIN_WEIGHT || weight > MAX_WEIGHT){
             System.out.println("Incorrect weight, the cat is dead:(");
             countCats--;
-        } else {
-            countCats++;
         }
+        countCats++;
     }
 
     public Cat(Cat clone){                                       // Конструктор Cat
+        this (1500.0 + 3000.0 * Math.random());
         this.weight = clone.weight;
         this.originWeight = clone.weight;
-        countCats++;
+        this.allFood = clone.allFood;
         if (weight < MIN_WEIGHT || weight > MAX_WEIGHT){
             System.out.println("Incorrect weight, the cat is dead:(");
             countCats--;
-        } else {
-            countCats++;
         }
     }
 
@@ -71,7 +69,7 @@ public class Cat {                                              // Класс Ca
 
     public void feed(Double amount) {                          // Метод Покормить
         boolean wasAlive = isAlive();
-        weight = weight + amount;
+        weight += amount;
         this.allFood = allFood + amount;
         if ( wasAlive == true && isAlive() == false) {
             countCats--;
@@ -80,7 +78,7 @@ public class Cat {                                              // Класс Ca
 
     public void drink(Double amount) {                         // Метод Попить
         boolean wasAlive = isAlive();
-        weight = weight + amount;
+        weight += amount;
         if ( wasAlive == true && isAlive() == false) {
             countCats--;
         }
