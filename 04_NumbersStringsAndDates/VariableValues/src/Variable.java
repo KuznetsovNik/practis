@@ -13,10 +13,10 @@ public class Variable {
         System.out.println("Min Long = " + Long.MIN_VALUE);
         System.out.println("Max Long =  " + Long.MAX_VALUE);
         System.out.println();
-        System.out.println("Min Float = " + Float.MIN_VALUE);
-        System.out.println("Max Float = " + Float.MAX_VALUE);
+        System.out.println("Min Float = " + -Float.MAX_VALUE);
+        System.out.println("Max Float =  " + Float.MAX_VALUE);
         System.out.println();
-        System.out.println("Min Double = " + Double.MIN_VALUE);
-        System.out.println("Max Double = " + Double.MAX_VALUE);
+        System.out.println("Min Double = " + -Double.MAX_VALUE);
+        System.out.println("Max Double =  " + Double.MAX_VALUE);
     }
 }
