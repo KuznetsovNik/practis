@@ -16,17 +16,20 @@ public class Container
       * .valueOf - преобразовывает любой объект в строку
      **/
     public int count;
+    public int amount = 0;
 
     public Integer sumDigits(Integer number) {
-        int amount = 0;
         String integerString = number.toString();
         for (int i = 0; i < integerString.length(); i++){
             char charAt = integerString.charAt(i);
             System.out.printf("Символ номер %d в строке '%s' = %c%n", i, integerString, charAt);
-            Integer index = Integer.parseInt(String.valueOf(charAt));
-            amount += index;
+            amount += Integer.parseInt(String.valueOf(charAt));
         }
-        System.out.print("Cумма всех чисел = ");
          return amount;
     }
+
+    public int getAmount(){
+        return amount;
+    }
+
 }
