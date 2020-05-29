@@ -20,13 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6141c2b4-3d99-4cbe-acc0-f7d9958ed25b" name="Default Changelist" comment="Rework2">
-      <change afterPath="$PROJECT_DIR$/../../.idea/java_basics.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../HumanitarianAid/.idea/HumanitarianAid.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../HumanitarianAid/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../HumanitarianAid/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Container.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1551865119735" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Homeworks/3 Объекты и классы/Cat" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../HumanitarianAid" />
   </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
@@ -91,10 +85,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1590749824242">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1590750647038">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590749824242" />
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590750647038" />
     <state width="1323" height="122" key="GridCell.Tab.0.bottom" timestamp="1590750399233">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

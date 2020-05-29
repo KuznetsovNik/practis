@@ -28,26 +28,24 @@ import java.util.Scanner;
 **/
 
 public class Humanitarian {
-    public static int truckCapacity =  0;                  // Переменная вместимость грузовика = 0 конейтнеров
     public static final int MAX_TRUCK_CAPACITY = 12;       // Переменная макс вместимость грузовика = 12 контейнеров
     public static int containerCapacity = 0;               // Переменная вместимость контейнера = 0 ящиков
     public static final int MAX_CONTAINER_CAPACITY = 27;   // Переменная макс вместимость контейнера = 27 ящиков
 
     public static void main(String[] args) {
         System.out.println("Сколько ящиков отгрузить?");
-        Scanner scanner = new Scanner(System.in);         // Ввод в косноль число помощи
-        int help = scanner.nextInt();                     // Инициализация перменнной помощи из косноли
+        Scanner scanner = new Scanner(System.in);          // Ввод в косноль число помощи
+        int help = scanner.nextInt();                      // Инициализация перменнной помощи из косноли
 
-        int maxTruckBoxesCapacity = MAX_CONTAINER_CAPACITY * MAX_TRUCK_CAPACITY;  // Вместимость грузовика в контейнерах
-        int howManyTruck = Math.round(help / maxTruckBoxesCapacity);              // Счетает сколько всего грузовиков
-        // int howManyContainer = Math.round(boxes / MAX_CONTAINER_CAPACITY); - Не используется
+        double maxTruckBoxesCapacity = MAX_CONTAINER_CAPACITY * MAX_TRUCK_CAPACITY;  // Вместимость грузовика в контейнерах
+        double howManyTruck = Math.ceil(help / maxTruckBoxesCapacity);               // Счетает сколько всего грузовиков
         int boxes = 0; // Ящики
         int truck = 0; // Грузовики
 
-        while (truck <= howManyTruck) {
+        while (truck < howManyTruck) {
             truck++;
             System.out.println("Грузовик " + truck + ":");
-            for (truckCapacity = 0; truckCapacity < MAX_TRUCK_CAPACITY; truckCapacity++){
+            for (int truckCapacity = 0; truckCapacity < MAX_TRUCK_CAPACITY; truckCapacity++){
                 containerCapacity++;
                 System.out.println("Контейнер " + containerCapacity);
                 for (int i = 0; i < MAX_CONTAINER_CAPACITY; i++){
