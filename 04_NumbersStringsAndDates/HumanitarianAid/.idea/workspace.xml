@@ -1,10 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="87e57232-a825-4b39-be77-aa3c7f31457f" name="Default Changelist" comment="">
+    <list default="true" id="87e57232-a825-4b39-be77-aa3c7f31457f" name="Default Changelist" comment="Rework3 HumanitarianAid">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Humanitarian.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Humanitarian.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../IntegerExperiments/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../IntegerExperiments/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,29 +72,53 @@
       <option name="presentableId" value="Default" />
       <updated>1590072083247</updated>
     </task>
+    <task id="LOCAL-00001" summary="Rework3 HumanitarianAid">
+      <created>1590774032293</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1590774032293</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Rework3 HumanitarianAid" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rework3 HumanitarianAid" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1590758558554">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1590774385770">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590758558554" />
-    <state width="1323" height="191" key="GridCell.Tab.0.bottom" timestamp="1590773739691">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1590774385770" />
+    <state width="1323" height="2" key="GridCell.Tab.0.bottom" timestamp="1590774037639">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590773739691" />
-    <state width="1323" height="191" key="GridCell.Tab.0.center" timestamp="1590773739691">
+    <state width="1323" height="2" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1590774037639" />
+    <state width="1323" height="2" key="GridCell.Tab.0.center" timestamp="1590774037639">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590773739691" />
-    <state width="1323" height="191" key="GridCell.Tab.0.left" timestamp="1590773739691">
+    <state width="1323" height="2" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1590774037639" />
+    <state width="1323" height="2" key="GridCell.Tab.0.left" timestamp="1590774037639">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590773739691" />
-    <state width="1323" height="191" key="GridCell.Tab.0.right" timestamp="1590773739691">
+    <state width="1323" height="2" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1590774037639" />
+    <state width="1323" height="2" key="GridCell.Tab.0.right" timestamp="1590774037639">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="191" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590773739691" />
+    <state width="1323" height="2" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1590774037639" />
     <state x="339" y="17" width="670" height="676" key="search.everywhere.popup" timestamp="1590598926319">
       <screen x="0" y="0" width="1366" height="728" />
     </state>

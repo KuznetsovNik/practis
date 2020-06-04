@@ -15,8 +15,13 @@ public class FullName {
         String fullName = scanner.nextLine();
         int space = fullName.indexOf(' ');
         int lastSpace = fullName.lastIndexOf(' ');
-        System.out.println("\tФамилия: " + fullName.substring(0,space));
-        System.out.println("\tИмя: " + fullName.substring(space,lastSpace));
-        System.out.println("\tОтчество: " + fullName.substring(lastSpace,fullName.length()));
+        int haveTwoSpace = fullName.indexOf(' ', space + 1);
+        if ( space != -1 && haveTwoSpace != -1) {
+            System.out.println("\tФамилия: " + fullName.substring(0, space));
+            System.out.println("\tИмя: " + fullName.substring(space,lastSpace));
+            System.out.println("\tОтчество: " + fullName.substring(lastSpace,fullName.length()));
+        } else {
+            System.out.println("Введи полностью ФИО");
+        }
     }
 }
