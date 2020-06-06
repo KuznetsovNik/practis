@@ -13,6 +13,17 @@ public class FullName {
         System.out.println("Введите ФИО");
         Scanner scanner = new Scanner(System.in);
         String fullName = scanner.nextLine();
+        String[] name = fullName.split(" ");
+        for (int i = 0; i < name.length; i++){
+        }
+        if (name.length != 3){
+            System.out.println("Некоректный ввод");
+        }else {
+            System.out.println("\tФамилия: " + name[0]);
+            System.out.println("\tИмя: " + name[1]);
+            System.out.println("\tОтчество: " + name[2]);
+        }
+        /**
         int space = fullName.indexOf(' ');
         int lastSpace = fullName.lastIndexOf(' ');
         int haveTwoSpace = fullName.indexOf(' ', space + 1);
@@ -23,5 +34,6 @@ public class FullName {
         } else {
             System.out.println("Введи полностью ФИО");
         }
+         **/
     }
 }
