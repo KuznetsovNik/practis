@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="74551ef3-e027-45c0-ba92-5e70ee5f73c4" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EnglishText/src/EnglishText.java" beforeDir="false" afterPath="$PROJECT_DIR$/../EnglishText/src/EnglishText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Loader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Loader.java" afterDir="false" />
     </list>
@@ -33,7 +33,7 @@
   <component name="PropertiesComponent">
     <property name="FullScreen" value="false" />
     <property name="dynamic.classpath" value="false" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Homeworks/4 Числа, строки и даты/FullName" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
@@ -156,26 +156,26 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1591454458429">
+    <state x="463" y="119" key="FileChooserDialogImpl" timestamp="1591445546358">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591454458429" />
-    <state width="1323" height="212" key="GridCell.Tab.0.bottom" timestamp="1591445548317">
+    <state x="463" y="119" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1591445546358" />
+    <state width="1323" height="212" key="GridCell.Tab.0.bottom" timestamp="1591991074089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="212" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591445548317" />
-    <state width="1323" height="212" key="GridCell.Tab.0.center" timestamp="1591445548317">
+    <state width="1323" height="212" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1591991074089" />
+    <state width="1323" height="212" key="GridCell.Tab.0.center" timestamp="1591991074089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="212" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591445548317" />
-    <state width="1323" height="212" key="GridCell.Tab.0.left" timestamp="1591445548317">
+    <state width="1323" height="212" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1591991074089" />
+    <state width="1323" height="212" key="GridCell.Tab.0.left" timestamp="1591991074089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="212" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591445548317" />
-    <state width="1323" height="212" key="GridCell.Tab.0.right" timestamp="1591445548317">
+    <state width="1323" height="212" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1591991074089" />
+    <state width="1323" height="212" key="GridCell.Tab.0.right" timestamp="1591991074089">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1323" height="212" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591445548317" />
+    <state width="1323" height="212" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1591991074089" />
     <state x="430" y="11" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1591383601583">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
