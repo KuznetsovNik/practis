@@ -1,16 +1,18 @@
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 
 public class Birthday {
     public static void main(String[] args) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy - EEEE");
-        GregorianCalendar calendar = new GregorianCalendar(1995, Calendar.OCTOBER , 27);
+        LocalDate now = LocalDate.of(1995, Month.OCTOBER, 27);
         int birthday = 0;
-        for (int i = 0; i < 25; i++) {
-            System.out.printf("%d %s \n" , birthday, dateFormat.format(calendar.getTime()));
+        for (int i = 0; i < 100; i++) {
+            System.out.printf("%d %s \n", birthday, now.plus(Period.ofYears(i)).format(DateTimeFormatter.ofPattern("dd.MM.yyyy - EEEE")));
             birthday++;
-            calendar.add(1, Calendar.YEAR);
+            if (now.plus(Period.ofYears(i+1)).isAfter(LocalDate.now())){
+                break;
+            }
         }
     }
 }
