@@ -8,18 +8,13 @@ public class Loader {
         String text = "Вася заработал 5000 рублей, Петя - 7563 рубля, а Маша - 30000 рублей";
         System.out.println(text);
         int sum = 0;
-        String[] sentences =  text.split("руб");
-        Pattern patt = Pattern.compile("(?<groupA>\\d+)");
-        for (int i = 0; i < sentences.length; i++){
-            String currstr = sentences[i];
-            Matcher match = patt.matcher(currstr);
-            while (match.find()){
-                sum += Integer.parseInt(match.group("groupA"));
-            }
+
+        Pattern pattern = Pattern.compile("(?<groupA>\\d+)");
+        Matcher match = pattern.matcher(text);
+        while (match.find()){
+            sum += Integer.parseInt(match.group("groupA"));
         }
         System.out.println("Сумма всех зарплат - " + sum);
-
-
 
 
 

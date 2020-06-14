@@ -9,7 +9,7 @@ public class telephoneNumbers {
         String number = scanner.nextLine();
         String pattern = number.replaceAll("[\\Da-zA-Z\\s]", "");
         if (pattern.length() == 11) {
-            System.out.println(pattern);
+            System.out.println(pattern.replaceAll("^[8]","7"));
         }else if (pattern.length() == 10){
             System.out.println("7" + pattern);
         } else {
