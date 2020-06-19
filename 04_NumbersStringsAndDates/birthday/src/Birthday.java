@@ -9,11 +9,9 @@ public class Birthday {
         LocalDate now = LocalDate.of(1995, Month.OCTOBER, 27);
         int birthday = 0;
         while (now.isBefore(LocalDate.now())){
-            System.out.printf("%d %s \n", birthday, now.plus(Period.ofYears(1)).format(DATE_FORMAT));
+            now = now.plusYears(1);
+            System.out.printf("%d %s \n", birthday, now.format(DATE_FORMAT));
             birthday++;
-            //if (now.plus(Period.ofYears(i+1)).isAfter(LocalDate.now())) {
-              //  break;
-            //}
         }
     }
 }
