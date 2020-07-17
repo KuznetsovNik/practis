@@ -2,8 +2,29 @@ public class Arrays {
     public static void main(String[] args) {
         String text = "Каждый охотник желает знать, где сидит фазан";
         String[] arrays = text.split(",?\\s+");
-        for (int i = arrays.length - 1; i >= 0 ; i--){
-            System.out.print(arrays[i] + " ");
+
+        int index = 1;
+        for (int i = 0; i < arrays.length ; i++){
+            arrays[i] = arrays[arrays.length - index];
+            index++;
         }
+        /** Не могу убрать баг
+         * Длина массива =  7
+         * Каждый-0 охотник-1 желает-2 знать-3 где-4 сидит-5 фазан-6
+         * Вход в цикл замены местамии
+         * arrays[0] = arrays[7 - 1] (фазан)
+         * arrays[1] = arrays[7 - 2] (сидит)
+         * arrays[2] = arrays[7 - 3] (где)
+         * arrays[3] = arrays[7 - 4] (знать)
+         * arrays[4] = arrays[7 - 5] (где) !Вот баг! Данный индекс массива уже инициализирован в цикле как где
+         * И все последующие индексы также инициализированы
+         * Выполнить условие не выходит
+         * Не могу понять как исправить баг, пробовал по разному не выходит.
+         */
+
+        for (int i = 0; i < arrays.length; i++){
+            System.out.println(arrays[i]);
+        }
+
     }
 }
