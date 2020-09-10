@@ -4,9 +4,14 @@ public class Arrays {
         String[] arrays = text.split(",?\\s+");
 
         int index = 1;
-        for (int i = 0; i < arrays.length ; i++){
+        for (int i = 0; i < arrays.length; i++){
+            System.out.printf("replace array[%d] = array[%d]%n", i, arrays.length - index);
             arrays[i] = arrays[arrays.length - index];
             index++;
+
+             for (int d = 0; d < arrays.length; d++){
+                System.out.printf("%d: %s%n", d, arrays[d]);
+            }
         }
         /** Не могу убрать баг
          * Длина массива =  7
@@ -21,10 +26,5 @@ public class Arrays {
          * Выполнить условие не выходит
          * Не могу понять как исправить баг, пробовал по разному не выходит.
          */
-
-        for (int i = 0; i < arrays.length; i++){
-            System.out.println(arrays[i]);
-        }
-
     }
 }

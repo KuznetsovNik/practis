@@ -1,6 +1,6 @@
 public class ProjectX {
 
-    public static final int SIZE_ARRAYS = 1;
+    public static final int SIZE_ARRAYS = 3;
 
     public static void main(String[] args) {
         int finalSize = SIZE_ARRAYS;
