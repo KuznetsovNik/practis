@@ -26,7 +26,7 @@ public class ArrayList1 {
                 Matcher matcherAdd = Pattern.compile("^(?i)add (?<text>.+)").matcher(toDo);
                 if (matcherAddIndexed.matches()) {
                     int number = Integer.parseInt(matcherAddIndexed.group("NoDeal"));
-                    if (number != toDoList.size()) {
+                    if (number < toDoList.size()) {
                         number = toDoList.size();
                         toDoList.add(number, matcherAddIndexed.group("text"));
                     }
