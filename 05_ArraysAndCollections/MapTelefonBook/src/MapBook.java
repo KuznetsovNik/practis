@@ -30,7 +30,12 @@ public class MapBook {
             } else if (matcherAddNumber.matches()) {
                 // Проверка на существование номера
                 if (name2number.containsValue(Long.parseLong(contact))) {
-                    System.out.println(name2number.get(contact) + " - " + contact);
+                    for (Map.Entry<String , Long> entry : name2number.entrySet()){
+                        if (entry.getValue().equals(Long.parseLong(contact))){
+                            System.out.println(entry.getKey() + " - " + contact);
+
+                        }
+                    }
                     continue;
                 }
                 // Просьба дополнить контакт
