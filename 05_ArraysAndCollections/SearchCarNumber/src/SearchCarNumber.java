@@ -6,87 +6,77 @@ public class SearchCarNumber {
 
         // Метод генерации автомобильных номеров
         String[] characters = new String[]{"С", "М", "Т", "В", "А", "Р", "О", "Н", "Е", "У"};
-        int o = 0;
-        for (int i = 1; i < 198; i++) {
-            for (int j = 1; j < 1000; j++) {
-                String chars = characters[(int) (Math.random() * 10)];
-                if (j < 10 && i < 10) {
-                    String number = String.format("%s%d%d%d%s%s%d%d", chars, o, o, j, chars, chars, o, i);
+        for (int i = 0; i < characters.length; i++){
+            for (int j = 1; j < 10; j++){
+                for ( int r = 1; r < 198; r++){
+                    String chars = characters[i];
+                    String region = String.valueOf(r);
+                    if (r < 10){
+                        region = "0" + region;
+                    }
+                    String number = String.format("%s%d%d%d%s%s%s", chars, j, j, j, chars, chars, region);
                     carsList.add(number);
-                    continue;
-                } else if (j < 10 && i > 9) {
-                    String number = String.format("%s%d%d%d%s%s%d", chars, o, o, j, chars, chars, i);
-                    carsList.add(number);
-                    continue;
-                } else if (j > 99 && i < 10) {
-                    String number = String.format("%s%d%s%s%d%d", chars, j, chars, chars, o, i);
-                    carsList.add(number);
-                    continue;
-                } else if (j < 100 && i < 10) {
-                    String number = String.format("%s%d%d%s%s%d%d", chars, o, j, chars, chars, o, i);
-                    carsList.add(number);
-                    continue;
-                } else if (j < 100) {
-                    String number = String.format("%s%d%d%s%s%d", chars, o, j, chars, chars, i);
-                    carsList.add(number);
-                    continue;
+
+
                 }
-                String number = String.format("%s%d%s%s%d", chars, j, chars, chars, i);
-                carsList.add(number);
             }
         }
-        // Метод печати полного списка номеров
         for(String list : carsList ){
             System.out.println(list);
         }
         Scanner scanner = new Scanner(System.in);
         String luckyNumber = scanner.nextLine();
 
-        // Поиск перебором (2.12969E7 - время в среднем н/с)
-        /*double a = System.nanoTime();
-        System.out.print("Поиск перебором: Номер найден? " + carsList.contains(luckyNumber));
-        double b = System.nanoTime();
-        double с = b - a;
-        System.out.println(" Время поиска:" + с + "н/с");*/
+        // Поиск перебором
+          long beforeSearchLine = System.nanoTime();
+          System.out.print("Поиск перебором: Номер найден? " + carsList.contains(luckyNumber));
+          long afterSearchLine = System.nanoTime();
+          long totalSearchLine = afterSearchLine - beforeSearchLine;
+          System.out.println(" Время поиска:" + totalSearchLine + "н/с");
 
-        // Бинарный поиск (1.30822E7 - время в среднем н/с)
-        /*Collections.sort(carsList);
-        double a = System.nanoTime();
+
+        //Бинарный поиск
+        Collections.sort(carsList);
+        long beforeSearchBinary = System.nanoTime();
         int index = Collections.binarySearch(carsList , luckyNumber);
-        System.out.print("Бинарный поиск: Номер найден? " + index);
-        double b = System.nanoTime();
-        double с = b - a;
-        System.out.println(" Время поиска:" + с + "н/с");*/
+        System.out.print("Бинарный поиск: Номер найден? ");
+        System.out.print(index > 0);
+        long afterSearchBinary = System.nanoTime();
+        long totalSearchBinary = afterSearchBinary - beforeSearchBinary;
+        System.out.println(" Время поиска:" + totalSearchBinary + "н/с");
 
-        // Поиск в HashSet (1.12086E7 - время в среднем н/с)
-        /*HashSet<String> copyCarList = new HashSet<>();
-        copyCarList.addAll(carsList);
-        double a = System.nanoTime();
-        System.out.print("Поиск в HashSet: Номер найден? " + copyCarList.contains(luckyNumber));
-        double b = System.nanoTime();
-        double c = b - a;
-        System.out.println(" Время поиска:" + c + "н/с");*/
+        // Поиск в HashSet
+        HashSet<String> copyCarListHash = new HashSet<>();
+        copyCarListHash.addAll(carsList);
+        long beforeSearchHash = System.nanoTime();
+        System.out.print("Поиск в HashSet: Номер найден? " + copyCarListHash.contains(luckyNumber));
+        long afterSearchHash = System.nanoTime();
+        long totalSearchHash = afterSearchHash - beforeSearchHash;
+        System.out.println(" Время поиска:" + totalSearchHash + "н/с");
 
-        // Поиск в TreeSet (1.1184E7 - время в среднем н/с)
-        TreeSet<String> copyCarList = new TreeSet<>();
-        copyCarList.addAll(carsList);
-        double a = System.nanoTime();
-        System.out.print("Поиск в TreeSet: Номер найден? " + copyCarList.contains(luckyNumber));
-        double b = System.nanoTime();
-        double c = b - a;
-        System.out.println(" Время поиска:" + c + "н/с");
+        // Поиск в TreeSet
+        TreeSet<String> copyCarListTree = new TreeSet<>();
+        copyCarListTree.addAll(carsList);
+        long beforeSearchTree = System.nanoTime();
+        System.out.print("Поиск в TreeSet: Номер найден? " + copyCarListTree.contains(luckyNumber));
+        long afterSearchTree = System.nanoTime();
+        long totalSearchTree = afterSearchTree - beforeSearchTree;
+        System.out.println(" Время поиска:" + totalSearchTree + "н/с");
+
+
 
         /**
          * В поисках по каждому из методов, я искал одинаковый элемент в списках номеров.
-         * Это был номер Х333ХХ92 , у него менялись только буквы.
+         * Это был номер А333АА92
          *
          * Вывод:
-         * Поиск перебором самый медленный, так как он идет по каждому элементу отдельно.
-         * Поиск бинарным методом быстрее поиска перебором, но приходится предварительно сортировать список
-         * Поиск по ХэшСетом и ТриСетом примерно равны по времени, разница в том, что ХэшСет ищет по уникальному хэшу элемента, а
-         * ТриСет изначально сортирует сам себя и потом ищет.
+         * Бинарный поиск самый быстрый, он предварительно отсартирован,
+         * его скорость от того что он делит всё на два и лишнее отбрасывает.
          *
-         * На мой взгляд HashSet более универсальный.
+         * Далее HashSet он ищет по уникальному хэшу внутри себя. И TreeSet он сортирует сам себя а потом ищет бинаром.
+         * Они оба от случая к случаю опережают друг друга.
+         *
+         * Последний и самый долгий поиск перебором, он просто идёт по всему списку, чем больше список тем дольше поиск.
          */
     }
 }
