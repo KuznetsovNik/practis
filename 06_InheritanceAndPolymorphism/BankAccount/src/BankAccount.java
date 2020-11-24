@@ -1,6 +1,6 @@
 public class BankAccount {
 
-    public int moneyAmount;
+    private int moneyAmount;
 
     public BankAccount(int moneyAmount){
         this.moneyAmount = moneyAmount;
