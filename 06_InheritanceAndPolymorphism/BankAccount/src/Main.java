@@ -3,7 +3,7 @@ public class Main {
         // Тест Класса BankAccount
         BankAccount oleg = new BankAccount(0);
         oleg.depositing(500);
-        oleg.withDrawing(450);
+        oleg.withDrawing(4500);
         System.out.println("Баланс на счете в рублях:");
         oleg.balance();
 
@@ -29,5 +29,6 @@ public class Main {
 
         // Тест метода перевода денег со счёта на счёт
         visa.send(oleg , 500);
+        oleg.send(sber, 10000);
     }
 }

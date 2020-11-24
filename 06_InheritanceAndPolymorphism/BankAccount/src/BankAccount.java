@@ -10,12 +10,12 @@ public class BankAccount {
         return moneyAmount;
     }
 
-    public void setMoneyAmount(int moneyAmount) {
-        this.moneyAmount = moneyAmount;
-    }
-
     public void withDrawing(int withDrawingAmount){
-        moneyAmount -= withDrawingAmount;
+        if (moneyAmount >= withDrawingAmount){
+            moneyAmount -= withDrawingAmount;
+        }else {
+            System.out.println("Недостаточно средств для снятия!");
+        }
     }
 
     public void depositing(int depositingAmount){

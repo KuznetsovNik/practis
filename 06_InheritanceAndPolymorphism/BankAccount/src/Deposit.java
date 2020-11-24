@@ -1,31 +1,27 @@
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDate;
 
 public class Deposit extends BankAccount {
 
-    Calendar calendar = new GregorianCalendar();
-    SimpleDateFormat formater = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-    public Date dateDepositing;
+    public LocalDate dateDepositing;
 
     public Deposit(int moneyAmount) {
         super(moneyAmount);
     }
 
+    @Override
     public void depositing(int depositingAmount){
-        moneyAmount += depositingAmount;
-        dateDepositing = calendar.getTime();
-        calendar.roll(Calendar.MONTH , +1);
+        super.depositing(depositingAmount);
+        dateDepositing = LocalDate.now();
     }
 
+    @Override
     public void withDrawing(int withDrawingAmount){
-        Date dateDrawing = calendar.getTime();
-        if (dateDrawing.after(dateDepositing)){
-            System.out.println("Отказано в снятии - не прошёл месяц с момента вклада");
-            System.out.println(formater.format(dateDepositing));
+        LocalDate dateDrawing = LocalDate.now();
+        if (dateDrawing.minusMonths(1).isBefore(dateDepositing)){
+            System.out.print("Отказано в снятии - не прошёл месяц с момента вклада - ");
+            System.out.println(dateDepositing);
         }else {
-            moneyAmount -= withDrawingAmount;
+            super.withDrawing(withDrawingAmount);
         }
     }
 
