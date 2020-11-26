@@ -1,38 +1,30 @@
 public class Individual extends Client {
 
-    private int accountAmount;
-
     public Individual(int accountAmount){
         this.accountAmount = accountAmount;
     }
 
-    public int getAccountAmount() {
-        return accountAmount;
-    }
-
     // Физ. лицо
-    @Override
-    public void depositingAccount(int clientDepositing) {
-        accountAmount += clientDepositing;
-    }
+
 
     @Override
-    public void withDrawingAccount(int clientDrawing) {
-        if (accountAmount >= clientDrawing){
-            accountAmount -= clientDrawing;
-        }else {
-            System.out.println("Недостаточно средств для снятия!");
-        }
-    }
-
-    @Override
-    public void balanceAccount() {
-        System.out.println("Баланс на счету Физ. лица : " + accountAmount);
+    public int balanceAccount() {
+        return accountAmount;
     }
 
     @Override
     public void infoAccount() {
-        balanceAccount();
         System.out.println("Для Вас условия снятия и пополнения без комиссии ");
+        super.infoAccount();
+    }
+
+    @Override
+    protected int getWithdrawCommission(int amount) {
+        return 0;
+    }
+
+    @Override
+    protected int getDepositCommission(int amount) {
+        return 0;
     }
 }

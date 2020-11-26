@@ -1,28 +1,38 @@
-public class Entity extends Individual {
+public class Entity extends Client {
 
     public Entity(int accountAmount) {
-        super(accountAmount);
+        this.accountAmount = accountAmount;
     }
 
     // Юр. лицо
 
     @Override
     public void withDrawingAccount(int clientDrawing) {
-        int commission;
-        commission = clientDrawing * 1/100;
-        System.out.println("Комиссия при снятии " + commission + "р.");
-        clientDrawing += commission;
+        System.out.println("Комиссия при снятии " + getWithdrawCommission(clientDrawing) + "р.");
         super.withDrawingAccount(clientDrawing);
     }
 
     @Override
-    public void balanceAccount() {
-        System.out.println("Баланс на счету Юр. лица : " + getAccountAmount());
+    public int balanceAccount() {
+        return accountAmount;
     }
+
 
     @Override
     public void infoAccount() {
-        balanceAccount();
         System.out.println("Для Вас условия пополнения без комиссии, но 1% комиссии при снятии средств ");
+        super.infoAccount();
     }
+
+    @Override
+    protected int getWithdrawCommission(int commission) {
+        commission = commission * 1/100;
+        return commission;
+    }
+
+    @Override
+    protected int getDepositCommission(int amount) {
+        return 0;
+    }
+
 }

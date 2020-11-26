@@ -22,7 +22,6 @@ public class Main {
         bar.depositingAccount(500);
         bar.depositingAccount(5000);
         bar.withDrawingAccount(5500);
-        bar.balanceAccount();
 
 
 //        // Тест Класса BankAccount
