@@ -1,7 +1,7 @@
 public class Entity extends Client {
 
     public Entity(int accountAmount) {
-        this.accountAmount = accountAmount;
+        super(accountAmount);
     }
 
     // Юр. лицо
@@ -11,12 +11,6 @@ public class Entity extends Client {
         System.out.println("Комиссия при снятии " + getWithdrawCommission(clientDrawing) + "р.");
         super.withDrawingAccount(clientDrawing);
     }
-
-    @Override
-    public int balanceAccount() {
-        return accountAmount;
-    }
-
 
     @Override
     public void infoAccount() {

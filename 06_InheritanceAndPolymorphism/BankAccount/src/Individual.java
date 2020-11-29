@@ -1,16 +1,10 @@
 public class Individual extends Client {
 
     public Individual(int accountAmount){
-        this.accountAmount = accountAmount;
+        super(accountAmount);
     }
 
     // Физ. лицо
-
-
-    @Override
-    public int balanceAccount() {
-        return accountAmount;
-    }
 
     @Override
     public void infoAccount() {

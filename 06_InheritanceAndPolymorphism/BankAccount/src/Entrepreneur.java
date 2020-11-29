@@ -1,15 +1,10 @@
 public class Entrepreneur extends Client {
 
     public Entrepreneur(int accountAmount) {
-        this.accountAmount = accountAmount;
+        super(accountAmount);
     }
 
     // Предприниматель
-
-    @Override
-    public int balanceAccount() {
-        return accountAmount;
-    }
 
     @Override
     public void infoAccount() {

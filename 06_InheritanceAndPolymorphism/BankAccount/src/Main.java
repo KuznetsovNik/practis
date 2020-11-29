@@ -2,26 +2,27 @@ public class Main {
     public static void main(String[] args) {
         // Тест абстрактного класса и наследования клиентов банка
         Individual human = new Individual(0);
-        human.infoAccount();
         human.depositingAccount(3000);
+        human.infoAccount();
         human.withDrawingAccount(280);
-        human.balanceAccount();
+        System.out.println(human.balanceAccount());
 
         System.out.println();
 
         Entity factory = new Entity(0);
-        factory.infoAccount();
         factory.depositingAccount(10000);
+        factory.infoAccount();
         factory.withDrawingAccount(4000);
-        factory.balanceAccount();
+        System.out.println(factory.balanceAccount());
 
         System.out.println();
 
         Entrepreneur bar = new Entrepreneur(0);
-        bar.infoAccount();
         bar.depositingAccount(500);
+        bar.infoAccount();
         bar.depositingAccount(5000);
         bar.withDrawingAccount(5500);
+        System.out.println(bar.balanceAccount());
 
 
 //        // Тест Класса BankAccount

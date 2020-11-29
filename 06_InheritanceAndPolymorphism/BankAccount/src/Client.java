@@ -1,6 +1,15 @@
 public abstract class Client {
 
+
     protected int accountAmount;
+
+    public Client(int accountAmount) {
+        this.accountAmount = accountAmount;
+    }
+
+    public int getAccountAmount() {
+        return accountAmount;
+    }
 
     public void depositingAccount(int clientDepositing){
         int totalWithCommission = clientDepositing - getDepositCommission(clientDepositing);
@@ -16,10 +25,12 @@ public abstract class Client {
         }
     }
 
-    abstract public int balanceAccount();
+    public int balanceAccount(){
+        return getAccountAmount();
+    }
 
     public void infoAccount(){
-        balanceAccount();
+        System.out.println(balanceAccount());
     }
 
     protected abstract int getWithdrawCommission(int amount);
