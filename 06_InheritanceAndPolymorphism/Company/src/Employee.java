@@ -1,5 +1,5 @@
 
-public interface Employee
-{
+public interface Employee  {
+
     int getMonthSalary();
 }

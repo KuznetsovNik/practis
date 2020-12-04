@@ -1,8 +1,11 @@
-public class Operator extends Company implements Employee{
+public class Operator implements Employee{
+
+    private final int BASIC_SALARY = 30000;
 
     @Override
     public int getMonthSalary()
     {
-        return getBasicSalary();
+        return BASIC_SALARY;
     }
+
 }

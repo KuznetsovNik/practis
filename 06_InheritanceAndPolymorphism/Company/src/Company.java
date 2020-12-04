@@ -2,90 +2,63 @@ import java.util.*;
 
 public class Company
 {
-    static private final int BASIC_SALARY = 40000;
-    protected int income;
-    protected int managers;
-    protected int topManagers;
-    protected int operators;
-    List<Employee> employeeList = new ArrayList<>();
+    private final List<Employee> employeeList = new ArrayList<>();
 
-    public Company()
-    {
-        managers = 0;
-        topManagers = 0;
-        operators = 0;
+    public static int getIncome() {
+        return 12000000;
     }
 
-    public void hire(String employee)
+    public void hire(Employee employee)
     {
-        if (employee.equals("manager")) {
-            Manager manager = new Manager();
-            employeeList.add(manager);
-        }else if (employee.equals("topmanager")) {
-            TopManager topManager = new TopManager();
-            employeeList.add(topManager);
-        } else if (employee.equals("operator")) {
-            Operator operator = new Operator();
-            employeeList.add(operator);
+        this.employeeList.add(employee);
+    }
+
+    public void hireAll(List<Employee> employeeList)
+    {
+        this.employeeList.addAll(employeeList);
+    }
+
+    public void fire(Employee employee)
+    {
+        employeeList.remove(employee);
+    }
+
+    public List<Employee> getTopSalaryStaff(int count)
+    {
+        return getLimitedFilteredList(count, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                return o2.getMonthSalary() - o1.getMonthSalary();
+            }
+        });
+    }
+
+    public List<Employee> getLowestSalaryStaff(int count)
+    {
+        return getLimitedFilteredList(count, new Comparator<Employee>() {
+            @Override
+            public int compare(Employee o1, Employee o2) {
+                return o1.getMonthSalary() - o2.getMonthSalary();
+            }
+        });
+    }
+
+    private List<Employee> getLimitedFilteredList (int count , Comparator<Employee> comparator){
+        List<Employee> copyList = new ArrayList<Employee>(employeeList);
+        Collections.sort(copyList , comparator);
+        List<Employee> result = new ArrayList<Employee>();
+        for (int i = 0; i < count; i++){
+            result.add(copyList.get(i));
         }
-        System.out.println(employeeList.size());
+        return result;
     }
 
-    public void hireAll(int numberManager, int numberTopManager, int numberOperator)
-    {
-        managers = numberManager;
-        for (int i = 0; i < numberManager; i++) {
-            Manager manager = new Manager();
-            employeeList.add(manager);
-        }
-        topManagers = numberTopManager;
-        for (int i = 0; i < numberTopManager; i++) {
-            TopManager topManager = new TopManager();
-            employeeList.add(topManager);
-        }
-        operators = numberOperator;
-        for (int i = 0; i < numberOperator; i++) {
-            Operator operator = new Operator();
-            employeeList.add(operator);
-        }
-        System.out.println(employeeList.size());
+    public int countEmployees(){
+        return employeeList.size();
     }
 
-    public void fire(String employee)
-    {
-
-        if (employee.equals("manager")){
-            employeeList.remove(managers);
-        } else if (employee.equals("topmanager")){
-            employeeList.remove(topManagers);
-        } else if (employee.equals("operator")){
-            employeeList.remove(operators);
-        }
-        System.out.println(employeeList.size());
+    public List<Employee> getEmployees(){
+        return employeeList;
     }
 
-    public int getIncome()
-    {
-        return income;
-    }
-
-    public static int getBasicSalary()
-    {
-        return BASIC_SALARY;
-    }
-
-    List<Employee> getTopSalaryStaff(int count)
-    {
-        for (Employee list : employeeList){
-            System.out.println(list);
-        }
-        return null;
-    }
-    List<Employee> getLowestSalaryStaff(int count)
-    {
-        for (Employee list : employeeList){
-            System.out.println(list);
-        }
-        return null;
-    }
 }
