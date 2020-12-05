@@ -2,14 +2,21 @@ import java.util.*;
 
 public class Company
 {
+    private int income;
     private final List<Employee> employeeList = new ArrayList<>();
 
-    public static int getIncome() {
-        return 12000000;
+
+    public int getIncome() {
+        return income;
+    }
+
+    public void setIncome(int income) {
+        this.income = income;
     }
 
     public void hire(Employee employee)
     {
+        employee.setCompany(this);
         this.employeeList.add(employee);
     }
 
