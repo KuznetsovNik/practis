@@ -22,7 +22,9 @@ public class Company
 
     public void hireAll(List<Employee> employeeList)
     {
-        this.employeeList.addAll(employeeList);
+        for(Employee employee : employeeList){
+            hire(employee);
+        }
     }
 
     public void fire(Employee employee)
