@@ -13,8 +13,17 @@ public class Main
     public static void main(String[] args)
     {
         ArrayList<Employee> staff = loadStaffFromFile();
-
-
+        Collections.sort(staff, (o1, o2) -> {
+            int result = o1.getSalary() - o2.getSalary();
+            if (result != 0) {
+                return o1.getSalary().compareTo(o2.getSalary());
+            }else {
+                return o1.getName().compareTo(o2.getName());
+            }
+        });
+        for (Employee employee : staff){
+            System.out.println(employee);
+        }
     }
 
     private static ArrayList<Employee> loadStaffFromFile()
