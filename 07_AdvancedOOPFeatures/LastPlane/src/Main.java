@@ -1,9 +1,10 @@
 import com.skillbox.airport.Airport;
-import com.skillbox.airport.Flight;
 import com.skillbox.airport.Terminal;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Collection;
 
 
 public class Main {
@@ -20,8 +21,13 @@ public class Main {
         airport.getTerminals()
                 .stream()
                 .map(Terminal::getFlights)
-                .filter(flights -> {
-                    LocalDateTime flightTime = LocalDateTime(flights.)
-                })
+                .flatMap(Collection::stream)
+                .filter(flight -> {
+                    LocalDateTime tmp = flight.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                    return tmp.isAfter(nowTime) && tmp.isBefore(twoHoursLater);
+                }).forEach(flight -> {
+                    LocalDateTime tmp = flight.getDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+                    System.out.println(flight.getAircraft().getModel() + "\t" + tmp.format(formatter));
+                });
     }
 }

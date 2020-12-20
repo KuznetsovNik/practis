@@ -12,7 +12,7 @@ public class Main
     {
         ArrayList<Employee> staff = loadStaffFromFile();
         Optional maxSalary = staff.stream()
-                .filter(employee -> employee.getWorkStart().getYear() == 2017)
+                .filter(employee -> employee.getWorkStart().getYear() + 1900 == 2017)
                 .max(Comparator.comparing(Employee::getSalary));
         if (maxSalary.isPresent()){
             System.out.println(maxSalary.get());
