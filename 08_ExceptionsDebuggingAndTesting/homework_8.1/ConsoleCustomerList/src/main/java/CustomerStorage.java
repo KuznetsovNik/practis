@@ -10,7 +10,7 @@ public class CustomerStorage {
         storage = new HashMap<>();
     }
 
-    public void addCustomer(String data) {
+    public void addCustomer(String data) throws CheckedException {
         final int INDEX_NAME = 0;
         final int INDEX_SURNAME = 1;
         final int INDEX_EMAIL = 2;
@@ -24,12 +24,12 @@ public class CustomerStorage {
 
         String pattern = components[3].replaceAll("[\\D]","" );
         if (pattern.length() != 11) {
-            throw new IllegalArgumentException("Wrong format: Invalid number ");
+            throw new UncheckedException("Wrong format: Invalid number ");
         }
 
         Matcher matcherCorrect = Pattern.compile("\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*\\.\\w{2,4}").matcher(components[2]);
         if (!matcherCorrect.matches()){
-            throw new IllegalArgumentException("Wrong format: Invalid email ");
+            throw new CheckedException("Wrong format: Invalid email ");
         }
 
         String name = components[INDEX_NAME] + " " + components[INDEX_SURNAME];
