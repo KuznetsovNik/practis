@@ -1,0 +1,131 @@
+import core.Line;
+import core.Station;
+import junit.framework.TestCase;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class RouteCalculatorTest extends TestCase {
+
+    RouteCalculator routeCalculator;
+    StationIndex stationIndex;
+    List<Station> route;
+    List<Station> routeWithOneChange;
+    List<Station> routeWithTwoChanges;
+
+    Line line1 , line2, line3;
+    Station st1 , st2 , st3 , st4 , st5 , st6, st7 , st8 , st9;
+
+    /**
+     *  Северная Линия (line1)        Центральная Линия (line2)       Южная Линия (line3)
+     *         |                                  |                             |
+     *         | st1 -       - пересадка -      - | st4                         | st7
+     *         |                                  |                             |
+     *         |                                  |                             |
+     *         | st2                              | st5                         | st8
+     *         |                                  |                             |
+     *         |                                  |                             |
+     *         | st3                              | st6  -    - пересадка -   - | st9
+     */
+    @Override
+    public void setUp() throws Exception {
+        stationIndex = new StationIndex();
+        routeCalculator = new RouteCalculator(stationIndex);
+
+        line1 = new Line(1 , "Северная");
+        line2 = new Line(2 , "Центральная");
+        line3 = new Line(3 , "Южная");
+
+        st1 = new Station("Авиастроительная" , line1);
+        st2 = new Station("Стадион" , line1);
+        st3 = new Station("Мега" , line1);
+        st4 = new Station("Вокзал" , line2);
+        st5 = new Station("Кремлёвская" , line2);
+        st6 = new Station("Проспект победы" , line2);
+        st7 = new Station("Адмиралтейская" , line3);
+        st8 = new Station("Цум" , line3);
+        st9 = new Station("Дубравная" , line3);
+
+        // North line
+        stationIndex.addLine(line1);
+        stationIndex.addStation(st1);
+        line1.addStation(st1);
+        stationIndex.addStation(st2);
+        line1.addStation(st2);
+        stationIndex.addStation(st3);
+        line1.addStation(st3);
+
+        // Central line
+        stationIndex.addLine(line2);
+        stationIndex.addStation(st4);
+        line2.addStation(st4);
+        stationIndex.addStation(st5);
+        line2.addStation(st5);
+        stationIndex.addStation(st6);
+        line2.addStation(st6);
+
+        // South line
+        stationIndex.addLine(line3);
+        stationIndex.addStation(st7);
+        line3.addStation(st7);
+        stationIndex.addStation(st8);
+        line3.addStation(st8);
+        stationIndex.addStation(st9);
+        line3.addStation(st9);
+
+        // Transfers
+        List<Station> change1LineTo2 = new ArrayList<>();
+        change1LineTo2.add(st1);
+        change1LineTo2.add(st4);
+        stationIndex.addConnection(change1LineTo2);
+
+        List<Station> change2LineTo3 = new ArrayList<>();
+        change2LineTo3.add(st6);
+        change2LineTo3.add(st9);
+        stationIndex.addConnection(change2LineTo3);
+
+        route = new ArrayList<>();
+        route.add(st4);
+        route.add(st5);
+        route.add(st6);
+
+        routeWithOneChange = new ArrayList<>();
+        routeWithOneChange.add(st2);
+        routeWithOneChange.add(st1);
+        routeWithOneChange.add(st4);
+        routeWithOneChange.add(st5);
+
+        routeWithTwoChanges = new ArrayList<>();
+        routeWithTwoChanges.add(st8);
+        routeWithTwoChanges.add(st9);
+        routeWithTwoChanges.add(st6);
+        routeWithTwoChanges.add(st5);
+        routeWithTwoChanges.add(st4);
+        routeWithTwoChanges.add(st1);
+        routeWithTwoChanges.add(st2);
+    }
+
+    public void testCalculateDuration(){
+        double actual = RouteCalculator.calculateDuration(routeWithTwoChanges);
+        double expected = 17.0;  // route 5.0 ; routeWithOneChange 8.5
+        assertEquals(actual , expected);
+    }
+
+    public void testGetShortestRoute(){
+        int actual = routeCalculator.getShortestRoute(st4 , st6).size();
+        int expected = 3;
+        assertEquals(actual , expected);
+    }
+
+    public void testGetShortestRouteWithOneChange(){
+        int actual = routeCalculator.getShortestRoute(st2 , st5).size();
+        int expected = 4;
+        assertEquals(actual , expected);
+    }
+
+    public void testGetShortestRouteWithTwoChanges(){
+        int actual = routeCalculator.getShortestRoute(st8 , st2).size();
+        int expected = 7;
+        assertEquals(actual , expected);
+    }
+}
