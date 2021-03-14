@@ -1,11 +1,12 @@
 import core.Line;
 import core.Station;
-import junit.framework.TestCase;
-
+import org.junit.Before;
+import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
+import static junit.framework.TestCase.assertEquals;
 
-public class RouteCalculatorTest extends TestCase {
+public class RouteCalculatorTest {
 
     RouteCalculator routeCalculator;
     StationIndex stationIndex;
@@ -27,7 +28,7 @@ public class RouteCalculatorTest extends TestCase {
      *         |                                  |                             |
      *         | st3                              | st6  -    - пересадка -   - | st9
      */
-    @Override
+    @Before
     public void setUp() throws Exception {
         stationIndex = new StationIndex();
         routeCalculator = new RouteCalculator(stationIndex);
@@ -90,10 +91,10 @@ public class RouteCalculatorTest extends TestCase {
         route.add(st6);
 
         routeWithOneChange = new ArrayList<>();
-        routeWithOneChange.add(st2);
         routeWithOneChange.add(st1);
-        routeWithOneChange.add(st4);
+        routeWithOneChange.add(st2);
         routeWithOneChange.add(st5);
+        routeWithOneChange.add(st4);
 
         routeWithTwoChanges = new ArrayList<>();
         routeWithTwoChanges.add(st8);
@@ -105,27 +106,42 @@ public class RouteCalculatorTest extends TestCase {
         routeWithTwoChanges.add(st2);
     }
 
+    @Test
     public void testCalculateDuration(){
         double actual = RouteCalculator.calculateDuration(routeWithTwoChanges);
-        double expected = 17.0;  // route 5.0 ; routeWithOneChange 8.5
-        assertEquals(actual , expected);
+        double expected = 17.0;  // route 5.0 ; routeWithOneChange 8.5;
+        assertEquals(expected , actual);
     }
 
+    @Test
     public void testGetShortestRoute(){
         int actual = routeCalculator.getShortestRoute(st4 , st6).size();
         int expected = 3;
-        assertEquals(actual , expected);
+        assertEquals(expected , actual);
     }
 
+    @Test
     public void testGetShortestRouteWithOneChange(){
         int actual = routeCalculator.getShortestRoute(st2 , st5).size();
         int expected = 4;
-        assertEquals(actual , expected);
+        assertEquals(expected , actual);
     }
 
+    @Test
     public void testGetShortestRouteWithTwoChanges(){
         int actual = routeCalculator.getShortestRoute(st8 , st2).size();
         int expected = 7;
-        assertEquals(actual , expected);
+        assertEquals(expected , actual);
+    }
+
+    @Test
+    public void testRightRoute(){
+        List<Station> rightRoute = new ArrayList<>();
+        rightRoute.add(st2);
+        rightRoute.add(st1);
+        rightRoute.add(st4);
+        rightRoute.add(st5);
+        List<Station> actual = routeWithOneChange;
+        assertEquals(rightRoute, actual);
     }
 }
