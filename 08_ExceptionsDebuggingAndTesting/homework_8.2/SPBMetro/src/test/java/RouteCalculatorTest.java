@@ -86,9 +86,9 @@ public class RouteCalculatorTest {
         stationIndex.addConnection(change2LineTo3);
 
         route = new ArrayList<>();
-        route.add(st4);
         route.add(st5);
         route.add(st6);
+        route.add(st4);
 
         routeWithOneChange = new ArrayList<>();
         routeWithOneChange.add(st1);
@@ -97,51 +97,54 @@ public class RouteCalculatorTest {
         routeWithOneChange.add(st4);
 
         routeWithTwoChanges = new ArrayList<>();
-        routeWithTwoChanges.add(st8);
-        routeWithTwoChanges.add(st9);
-        routeWithTwoChanges.add(st6);
-        routeWithTwoChanges.add(st5);
-        routeWithTwoChanges.add(st4);
         routeWithTwoChanges.add(st1);
+        routeWithTwoChanges.add(st4);
         routeWithTwoChanges.add(st2);
+        routeWithTwoChanges.add(st5);
+        routeWithTwoChanges.add(st9);
+        routeWithTwoChanges.add(st8);
+        routeWithTwoChanges.add(st6);
     }
 
     @Test
     public void testCalculateDuration(){
         double actual = RouteCalculator.calculateDuration(routeWithTwoChanges);
-        double expected = 17.0;  // route 5.0 ; routeWithOneChange 8.5;
+        double expected = 17.0;  // route 5.0 ; routeWithOneChange 8.5; routeWithTwoChanges 17.0
         assertEquals(expected , actual);
     }
 
     @Test
     public void testGetShortestRoute(){
-        int actual = routeCalculator.getShortestRoute(st4 , st6).size();
-        int expected = 3;
+        List<Station> actual = routeCalculator.getShortestRoute(st4 , st6);
+        List<Station> expected = new ArrayList<>();
+        expected.add(st4);
+        expected.add(st5);
+        expected.add(st6);
         assertEquals(expected , actual);
     }
 
     @Test
     public void testGetShortestRouteWithOneChange(){
-        int actual = routeCalculator.getShortestRoute(st2 , st5).size();
-        int expected = 4;
+        List<Station> actual = routeCalculator.getShortestRoute(st2 , st5);
+        List<Station> expected = new ArrayList<>();
+        expected.add(st2);
+        expected.add(st1);
+        expected.add(st4);
+        expected.add(st5);
         assertEquals(expected , actual);
     }
 
     @Test
     public void testGetShortestRouteWithTwoChanges(){
-        int actual = routeCalculator.getShortestRoute(st8 , st2).size();
-        int expected = 7;
+        List<Station> actual = routeCalculator.getShortestRoute(st8 , st2);
+        List<Station> expected = new ArrayList<>();
+        expected.add(st8);
+        expected.add(st9);
+        expected.add(st6);
+        expected.add(st5);
+        expected.add(st4);
+        expected.add(st1);
+        expected.add(st2);
         assertEquals(expected , actual);
-    }
-
-    @Test
-    public void testRightRoute(){
-        List<Station> rightRoute = new ArrayList<>();
-        rightRoute.add(st2);
-        rightRoute.add(st1);
-        rightRoute.add(st4);
-        rightRoute.add(st5);
-        List<Station> actual = routeWithOneChange;
-        assertEquals(rightRoute, actual);
     }
 }
