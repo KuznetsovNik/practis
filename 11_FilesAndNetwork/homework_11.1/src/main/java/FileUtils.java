@@ -9,7 +9,7 @@ public class FileUtils {
             if (file.isDirectory()){
                 System.out.println("Размер папки - " + file.getName() + " составляет - " + friendlyFileSize(file.length()));
                 File[] files = file.listFiles();
-                for(int i = 0; i < file.length(); i++){
+                for(int i = 0; i < files.length; i++){
                     weight += calculateFolderSize(files[i].getPath());
                 }
             }else {
