@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.file.Files;
 
 public class FileUtils {
     public static void copyFolder(String sourceDirectory, String destinationDirectory){
@@ -16,29 +17,12 @@ public class FileUtils {
                 copyFolder(srcFile.getPath(), destFile.getPath());
             }
         } else {
-            InputStream in = null;
-            OutputStream out = null;
             try {
-                in = new FileInputStream(source);
-                out = new FileOutputStream(destination);
-
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = in.read(buffer)) > 0) {
-                    out.write(buffer, 0, length);
-                }
-            } catch (Exception e) {
-                try {
-                    in.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
-                try {
-                    out.close();
-                } catch (IOException e1) {
-                    e1.printStackTrace();
-                }
+                Files.copy(source.toPath(), destination.toPath());
+            }catch (Exception exception){
+                exception.printStackTrace();
             }
         }
     }
 }
+
