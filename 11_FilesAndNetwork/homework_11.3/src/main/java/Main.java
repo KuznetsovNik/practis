@@ -1,10 +1,13 @@
 public class Main {
     private static final String DATA_FILE = ("C:/Users/Admin/Desktop/movementList.csv");
     public static void main(String[] args) {
-        Movements alfaBank = new Movements(DATA_FILE);
-        System.out.println("Сумма расходов: " + alfaBank.getExpenseSum() + " руб.");
-        System.out.println("Сумма доходов: " + alfaBank.getIncomeSum() + " руб.");
-        alfaBank.getExpenditure();
+        try {
+            Movements alfaBank = new Movements(DATA_FILE);
+            System.out.println("\nСумма расходов: " + alfaBank.getExpenseSum() + " руб.");
+            System.out.println("Сумма доходов: " + alfaBank.getIncomeSum() + " руб.");
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
         /**
          * Примеры работы программы
          *

@@ -1,8 +1,6 @@
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Movements {
     private double allExpense;
@@ -15,23 +13,19 @@ public class Movements {
             for (String line : lines) {
                 String[] fragments = line.split(",");
                 if (fragments.length != 8) {
-                    String[] splitReplace = line.split("\\\"");
-                    splitReplace[1] = splitReplace[1].replaceAll("," , "\\.");
-                    StringBuilder sb = new StringBuilder(splitReplace[0]);
-                    sb.append(splitReplace[1]);
-                    String newLine = sb.toString();
-                    String[] fragments2 = newLine.split(",");
-                    if (fragments2.length != 8){
-                        System.out.println("Ошибка");
-                    }
-                    String description = fragments2[5].replaceAll("\\s{2,}|\\d{2,}|\\+|\\.|\\\\|\\/|\\)|\\(|\\-" , " ").trim();
+                    String fixedLine = line.replaceAll("\"(\\d+),(\\d+)\"", "$1.$2");
+                    String[] fragments2 = fixedLine.split(",");
+                    String description = fragments2[5].replaceAll("\\s{2,}|\\d{2,}|\\+|\\.|\\\\|\\/|\\)|\\(|\\-", "");
                     excerptList.add(new Excerpt(
                             description,
                             fragments2[6],
                             fragments2[7]));
+                    if (fragments2.length != 8) {
+                        System.out.println("!!!Ошибка!!!");
+                    }
                     continue;
                 }
-                String description2 = fragments[5].replaceAll("\\s{2,}|\\d{2,}|\\+|\\.|\\\\|\\/|\\)|\\(|\\-" , " ").trim();
+                String description2 = fragments[5].replaceAll("\\s{2,}|\\d{2,}|\\+|\\.|\\\\|\\/|\\)|\\(|\\-", "");
                 excerptList.add(new Excerpt(
                         description2,
                         fragments[6],
@@ -40,7 +34,8 @@ public class Movements {
             excerptList.remove(0);
             excerptList.forEach(excerpt -> allExpense += Double.parseDouble(excerpt.getExpense()));
             excerptList.forEach(excerpt -> allIncome += Double.parseDouble(excerpt.getIncome()));
-        }catch(Exception ex){
+            getExpenditure(excerptList);
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
@@ -53,19 +48,18 @@ public class Movements {
         return allIncome;
     }
 
-    public void getExpenditure(){
-        Stream<Excerpt> stream = excerptList.stream();
-        List<Excerpt> filtered = stream.filter(excerpt -> excerpt.getExpense().length() > 1)
-                .collect(Collectors.toList());
+    public void getExpenditure(List<Excerpt> total) {
         System.out.println("--------------------Операции с расходами-----------------------------");
-        filtered.sort(Comparator.comparing(Excerpt::getDescription));
-        filtered.forEach(System.out::println);
-        Map<String , Double> mapExpenditure = filtered.stream()
-                .collect(Collectors.toMap(
-                        (Excerpt::getDescription)
-                        ,excerpt -> Double.parseDouble(excerpt.getExpense())));
-        for (String description : mapExpenditure.keySet()) {
-            System.out.printf("%s ---> %f %s\n", description, mapExpenditure.get(description), "руб");
+        Map<String,Double> mapExpenditure = new HashMap<>();
+        for (Excerpt i : total){
+            String name = i.getDescription();
+            double price = mapExpenditure.containsKey(name) ? mapExpenditure.get(name) : 0;
+            price += Double.parseDouble(i.getExpense());
+            mapExpenditure.put(name, price);
         }
+        for (String description : mapExpenditure.keySet()) {
+            System.out.printf("%s: %.2f %s%n", description, mapExpenditure.get(description), "руб");
+        }
+
     }
 }
