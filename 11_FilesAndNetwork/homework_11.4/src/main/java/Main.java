@@ -9,6 +9,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main {
     private static final String WEB_SITE_URL = "https://lenta.ru";
@@ -21,18 +23,19 @@ public class Main {
             for (Element el : img) {
                 String src = el.absUrl("src");
                 System.out.println("Image Found! : " + el.attr("alt"));
-                try (InputStream in = new URL(src).openStream()) {
-                    Files.copy(in, Paths.get(FOLDER_PATH + "/" +
-                            new File(src.replaceAll(".*?([^/]*?\\.jpg|\\.jpeg|\\.gif|\\.png|\\.bmp|\\.js).*",
-                                    "$1"))), StandardCopyOption.REPLACE_EXISTING);
+                Pattern pattern = Pattern.compile(".*?([^/]*?\\.jpg|\\.jpeg|\\.gif|\\.png|\\.bmp|\\.js).*");
+                Matcher matcher = pattern.matcher(src);
+                if (matcher.find()){
+                    try (InputStream in = new URL(src).openStream()) {
+                     Files.copy(in, Paths.get(FOLDER_PATH + "/" +
+                     new File(src.replaceAll(".*?([^/]*?\\.jpg|\\.jpeg|\\.gif|\\.png|\\.bmp|\\.js).*", "$1"))), StandardCopyOption.REPLACE_EXISTING);
+                    }
                 }
             }
         }catch(Exception ex){
             ex.printStackTrace();
         }
     }
-
-
 }
 
 
