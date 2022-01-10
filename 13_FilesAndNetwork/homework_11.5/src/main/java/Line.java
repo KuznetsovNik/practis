@@ -1,0 +1,45 @@
+
+public class Line implements Comparable<Line>
+{
+    private final String number;
+    private final String name;
+
+    public Line(String number, String name)
+    {
+        this.number = number;
+        this.name = name;
+    }
+
+    public String getNumber()
+    {
+        return number;
+    }
+
+    public String getName()
+    {
+        return name;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    public int compareTo(Line o) {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Line{" +
+                "number='" + number + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
+}
