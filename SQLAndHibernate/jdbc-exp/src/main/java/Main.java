@@ -12,19 +12,20 @@ public class Main {
         try {
             Connection connection = DriverManager.getConnection(url, user, pass);
             Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(" SELECT course_name AS Name, Count(subscription_date) AS CountPurchase, MAX(MONTH(subscription_date)) AS LastMonthSales FROM PurchaseList GROUP BY course_name;");
+            ResultSet resultSet = statement.executeQuery(" SELECT course_name AS Name, Count(subscription_date) AS CountPurchase,MIN(MONTH(subscription_date)) AS FirstMonthsSales, MAX(MONTH(subscription_date)) AS LastMonthSales FROM PurchaseList GROUP BY course_name;");
             System.out.println(" Название курса - Среднее покупок в месяц : ");
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 String courseName = resultSet.getString("Name");
                 double countPurchase = Double.parseDouble(resultSet.getString("CountPurchase"));
+                double firstMonthsSales = Double.parseDouble(resultSet.getString("FirstMonthsSales"));
                 double lastMonthSales = Double.parseDouble(resultSet.getString("LastMonthSales"));
-                double value = countPurchase/lastMonthSales;
-                System.out.printf(courseName + " - %.2f \n" , value);
+                double value = countPurchase / (lastMonthSales-firstMonthsSales);
+                System.out.printf(courseName + " - %.2f \n", value);
             }
             resultSet.close();
             statement.close();
             connection.close();
-        }catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }
