@@ -21,6 +21,7 @@ public class LinkedPurchaseList {
     public LinkedPurchaseList(int studentId, int courseId) {
         this.studentId = studentId;
         this.courseId = courseId;
+        this.keyId = keyId;
     }
 
     public int getStudentId() {
@@ -39,4 +40,11 @@ public class LinkedPurchaseList {
         this.courseId = courseId;
     }
 
+    public KeyId getKeyId() {
+        return keyId;
+    }
+
+    public void setKeyId(KeyId keyId) {
+        this.keyId = keyId;
+    }
 }

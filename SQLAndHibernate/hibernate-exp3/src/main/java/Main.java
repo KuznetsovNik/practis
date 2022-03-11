@@ -9,6 +9,7 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import java.util.List;
 
 public class Main {
+
     public static void main(String[] args) {
         StandardServiceRegistry registry = new StandardServiceRegistryBuilder().configure("hibernate.cfg.xml").build();
         Metadata metadata = new MetadataSources(registry).getMetadataBuilder().build();
@@ -25,12 +26,18 @@ public class Main {
         for (Integer integer : idCourses){
             System.out.println(integer);
         }
+
         try {
-            for (int i = 1; i < idStudents.size(); i++) {
-                for (int x = 1; x < idCourses.size(); x++) {
-                    LinkedPurchaseList linkedPurchaseList = new LinkedPurchaseList(idStudents.get(i), idCourses.get(x));
-                    session.save(linkedPurchaseList);
-                }
+            KeyId keyId = new KeyId();
+            LinkedPurchaseList linkedPurchaseList = new LinkedPurchaseList();
+            for (int i = 0; i < idStudents.size(); i++) {
+                keyId.setStudentId(idStudents.get(i));
+                keyId.setCourseId(idCourses.get(i));
+                System.out.println(keyId);
+                linkedPurchaseList.setStudentId(idStudents.get(i));
+                linkedPurchaseList.setCourseId(idCourses.get(i));
+                linkedPurchaseList.setKeyId(keyId);
+                session.save(linkedPurchaseList);
             }
         }catch (Exception exception){
             exception.printStackTrace();
