@@ -21,7 +21,6 @@ public class LinkedPurchaseList {
     public LinkedPurchaseList(int studentId, int courseId) {
         this.studentId = studentId;
         this.courseId = courseId;
-        this.keyId = keyId;
     }
 
     public int getStudentId() {
@@ -46,5 +45,14 @@ public class LinkedPurchaseList {
 
     public void setKeyId(KeyId keyId) {
         this.keyId = keyId;
+    }
+
+    @Override
+    public String toString() {
+        return "LinkedPurchaseList{" +
+                "keyId=" + keyId +
+                ", studentId=" + studentId +
+                ", courseId=" + courseId +
+                '}';
     }
 }

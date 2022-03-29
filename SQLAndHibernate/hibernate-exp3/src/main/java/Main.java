@@ -17,27 +17,27 @@ public class Main {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        List<Integer> idStudents = session.createSQLQuery("SELECT Students.id FROM Students JOIN Purchaselist ON Purchaselist.student_name = Students.name").getResultList();
-        for (Integer integer : idStudents){
-            System.out.println(integer);
-        }
-
-        List<Integer> idCourses = session.createSQLQuery("SELECT Courses.id FROM Courses JOIN Purchaselist ON Purchaselist.course_name = Courses.name").getResultList();
-        for (Integer integer : idCourses){
-            System.out.println(integer);
-        }
-
         try {
-            KeyId keyId = new KeyId();
-            LinkedPurchaseList linkedPurchaseList = new LinkedPurchaseList();
+            List<Integer> idStudents = session.createSQLQuery("SELECT Students.id FROM Students JOIN Purchaselist ON Purchaselist.student_name = Students.name").getResultList();
+            for (Integer integer : idStudents){
+                System.out.println(integer);
+            }
+
+            List<Integer> idCourses = session.createSQLQuery("SELECT Courses.id FROM Courses JOIN Purchaselist ON Purchaselist.course_name = Courses.name").getResultList();
+            for (Integer integer : idCourses){
+                System.out.println(integer);
+            }
+
             for (int i = 0; i < idStudents.size(); i++) {
-                keyId.setStudentId(idStudents.get(i));
-                keyId.setCourseId(idCourses.get(i));
-                System.out.println(keyId);
-                linkedPurchaseList.setStudentId(idStudents.get(i));
-                linkedPurchaseList.setCourseId(idCourses.get(i));
-                linkedPurchaseList.setKeyId(keyId);
-                session.save(linkedPurchaseList);
+                    KeyId keyId = new KeyId();
+                    LinkedPurchaseList linkedPurchaseList = new LinkedPurchaseList();
+                    keyId.setStudentId(idStudents.get(i));
+                    keyId.setCourseId(idCourses.get(i));
+                    System.out.println(keyId);
+                    linkedPurchaseList.setStudentId(idStudents.get(i));
+                    linkedPurchaseList.setCourseId(idCourses.get(i));
+                    linkedPurchaseList.setKeyId(keyId);
+                    session.save(linkedPurchaseList);
             }
         }catch (Exception exception){
             exception.printStackTrace();
