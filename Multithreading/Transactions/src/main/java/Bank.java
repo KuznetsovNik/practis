@@ -19,17 +19,21 @@ public class Bank {
         return random.nextBoolean();
     }
 
-    public synchronized void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
+    public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
         System.out.printf("Запрос на перевод с %s на %s сумму %d \n",fromAccountNum,toAccountNum,amount);
         Account from = accounts.get(fromAccountNum);
         Account to = accounts.get(toAccountNum);
 
         if (amount <= 50000) {
             if (from.getMoney() >= amount) {
-                long balanceFrom = from.getMoney() - amount;
-                long totalTo = to.getMoney() + amount;
-                from.setMoney(balanceFrom);
-                to.setMoney(totalTo);
+                synchronized (from){
+                    synchronized (to) {
+                        long balanceFrom = from.getMoney() - amount;
+                        long totalTo = to.getMoney() + amount;
+                        from.setMoney(balanceFrom);
+                        to.setMoney(totalTo);
+                    }
+                }
                 System.out.printf("Перевод с %s на %s сумму %d СОВЕРШЁН \n",fromAccountNum,toAccountNum,amount);
             }else {
                 System.out.println("На счёте недостаточно средств");
@@ -47,10 +51,14 @@ public class Bank {
             }
         } else {
             if (from.getMoney() >= amount) {
-                long balanceFrom = accounts.get(fromAccountNum).getMoney() - amount;
-                long totalTo = accounts.get(toAccountNum).getMoney() + amount;
-                from.setMoney(balanceFrom);
-                to.setMoney(totalTo);
+                synchronized (from) {
+                    synchronized (to) {
+                        long balanceFrom = accounts.get(fromAccountNum).getMoney() - amount;
+                        long totalTo = accounts.get(toAccountNum).getMoney() + amount;
+                        from.setMoney(balanceFrom);
+                        to.setMoney(totalTo);
+                    }
+                }
                 System.out.printf("Перевод с %s на %s сумму %d СОВЕРШЁН \n",fromAccountNum,toAccountNum,amount);
             }else {
                 System.out.println("На счёте недостаточно средств");
