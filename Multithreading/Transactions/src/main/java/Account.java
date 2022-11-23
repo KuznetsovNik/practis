@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Account {
 
     private long money;
@@ -24,4 +26,16 @@ public class Account {
         this.accNumber = accNumber;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return money == account.money && Objects.equals(accNumber, account.accNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(money, accNumber);
+    }
 }

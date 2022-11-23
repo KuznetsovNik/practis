@@ -19,50 +19,50 @@ public class Bank {
         return random.nextBoolean();
     }
 
+    public boolean isEnoughMoney(Account fromBalance, long amount){
+        return fromBalance.getMoney() >= amount;
+    }
+
     public void transfer(String fromAccountNum, String toAccountNum, long amount) throws InterruptedException {
-        System.out.printf("Запрос на перевод с %s на %s сумму %d \n",fromAccountNum,toAccountNum,amount);
         Account from = accounts.get(fromAccountNum);
         Account to = accounts.get(toAccountNum);
+        System.out.printf("Запрос на перевод с %s на %s сумму %d \n", from.getAccNumber(), to.getAccNumber(), amount);
+        Account lowSynchro;
+        Account topSynchro;
 
-        if (amount <= 50000) {
-            if (from.getMoney() >= amount) {
-                synchronized (from){
-                    synchronized (to) {
-                        long balanceFrom = from.getMoney() - amount;
+        if (from.equals(to)) {
+            lowSynchro = from;
+            topSynchro = to;
+        } else {
+            lowSynchro = to;
+            topSynchro = from;
+        }
+        if (isEnoughMoney(from, amount)) {
+            if (amount > 50000 || isFraud(fromAccountNum, toAccountNum, amount)) {
+                System.out.println("Счета " + from.getAccNumber() + " заблокированы");
+                lock.lock();
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                } finally {
+                    lock.unlock();
+                }
+                System.out.println("Счета " + from.getAccNumber() + " разблокированы, проверка произведена");
+            } else {
+                synchronized (lowSynchro) {
+                    long balanceFrom = from.getMoney() - amount;
+                    synchronized (topSynchro) {
                         long totalTo = to.getMoney() + amount;
                         from.setMoney(balanceFrom);
                         to.setMoney(totalTo);
                     }
                 }
-                System.out.printf("Перевод с %s на %s сумму %d СОВЕРШЁН \n",fromAccountNum,toAccountNum,amount);
-            }else {
-                System.out.println("На счёте недостаточно средств");
+                System.out.printf("Перевод с %s на %s сумму %d СОВЕРШЁН \n", from.getAccNumber(), to.getAccNumber(), amount);
+
             }
-        } else if (isFraud(fromAccountNum, toAccountNum, amount)){
-            System.out.println("Счета заблокированы");
-            lock.lock();
-            try {
-                Thread.sleep(1000);
-            }catch (InterruptedException ex){
-                ex.printStackTrace();
-            }
-            finally {
-                lock.unlock();
-            }
-        } else {
-            if (from.getMoney() >= amount) {
-                synchronized (from) {
-                    synchronized (to) {
-                        long balanceFrom = accounts.get(fromAccountNum).getMoney() - amount;
-                        long totalTo = accounts.get(toAccountNum).getMoney() + amount;
-                        from.setMoney(balanceFrom);
-                        to.setMoney(totalTo);
-                    }
-                }
-                System.out.printf("Перевод с %s на %s сумму %d СОВЕРШЁН \n",fromAccountNum,toAccountNum,amount);
-            }else {
-                System.out.println("На счёте недостаточно средств");
-            }
+        }else {
+            System.out.println("На счёте недостаточно средств");
         }
     }
 

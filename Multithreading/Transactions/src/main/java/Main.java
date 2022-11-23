@@ -16,11 +16,12 @@ public class Main {
             bankMap.put(accountTo.getAccNumber(), accountTo);
             threadList.add(new Thread(() -> {
                 for (int j = 0; j < 5; j++) {
+                    System.out.println("Поток № " + j + " старт:");
                     if (accountFrom != accountTo) {
                         long randomMoney = Math.round(Math.random() * 54000);
                         try {
                             bank.transfer(accountFrom.getAccNumber(), accountTo.getAccNumber(), randomMoney);
-                            System.out.println("Сумма денег в банке " +  bank.getSumAllAccounts());
+                            System.out.println("Поток № " + j + " финиш: Сумма денег в банке " +  bank.getSumAllAccounts());
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
