@@ -1,41 +1,39 @@
 package model;
 
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-@Table(name = "Tasks")
-public class Task {
-
+@Table(name = "tasks")
+public class Task implements Serializable {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Integer id;
+    @CreatedDate
+    @Column(name = "creation_time")
+    private LocalDateTime creationTime;
+    @Column(name = "is_done")
+    private boolean isDone;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "description")
+    private String description;
 
     public Task() {
     }
 
-    public Task(int id, LocalDateTime creationTime, boolean isDone, String title, String description) {
-        this.id = id;
-        this.creationTime = creationTime;
-        this.isDone = isDone;
+    public Task(String title, String description) {
+        creationTime = LocalDateTime.now();
+        isDone = false;
         this.title = title;
         this.description = description;
     }
-
-    @Column(name = "creation_time")
-    private LocalDateTime creationTime;
-
-    @Column(name = "is_done")
-    private boolean isDone;
-
-    @Column(name = "title")
-    private String title;
-
-    @Column(name = "description")
-    private String description;
 
     public int getId() {
         return id;
