@@ -1,7 +1,8 @@
 package main;
 
-import model.Task;
-import model.TaskRepository;
+import main.model.Task;
+import main.model.TaskRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -13,19 +14,26 @@ import java.util.Optional;
 
 @RestController
 public class ToDoListController {
+    @Autowired
     private TaskRepository taskRepository;
+
     @RequestMapping("/")
     public String index(){
         return (new Date()).toString() + " - Дата. Рандомное число = " + ((int)(Math.random() * 100));
     }
+
     @PostMapping(value = "/tasks", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Task> createTask(@RequestBody Task task){
-        Task newTask = new Task(task.getTitle(),task.getDescription());
-        taskRepository.save(newTask);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        try {
+            Task newTask = new Task(task.getTitle(), task.getDescription());
+            taskRepository.save(newTask);
+            return new ResponseEntity<>(HttpStatus.CREATED);
+        }catch (NullPointerException e){
+            return ResponseEntity.notFound().build();
+        }
     }
     @GetMapping("/tasks/{id}")
-    public ResponseEntity getInfoTask(@PathVariable int id){
+    public ResponseEntity getInfoTask(@PathVariable long id){
             Optional<Task> taskOptional = taskRepository.findById(id);
             if(!taskOptional.isPresent()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
@@ -34,16 +42,18 @@ public class ToDoListController {
 
     }
     @GetMapping("/tasks")
-    public List<Task> getListTasks(){
+    public ResponseEntity<List<Task>> getListTasks(){
         Iterable<Task> taskIterable = taskRepository.findAll();
         ArrayList<Task> tasks = new ArrayList<>();
         for (Task task : taskIterable) {
             tasks.add(task);
         }
-        return tasks;
+        if (!tasks.isEmpty()) {
+            return new ResponseEntity<>(tasks, HttpStatus.OK);
+        }return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
     }
     @PatchMapping(value = "/tasks/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE)
-     public ResponseEntity<HttpStatus> updateTask(@PathVariable int id,@RequestParam("isDone") boolean isDone,@RequestParam("title") String title,@RequestParam("description") String description){
+     public ResponseEntity<HttpStatus> updateTask(@PathVariable long id,@RequestParam("isDone") boolean isDone,@RequestParam("title") String title,@RequestParam("description") String description){
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();
@@ -57,7 +67,7 @@ public class ToDoListController {
         }
     }
     @DeleteMapping("/tasks/{id}")
-    public ResponseEntity<HttpStatus> deleteTask(@PathVariable int id){
+    public ResponseEntity<HttpStatus> deleteTask(@PathVariable long id){
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();
