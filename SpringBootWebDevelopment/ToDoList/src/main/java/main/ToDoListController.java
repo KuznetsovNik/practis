@@ -17,6 +17,10 @@ public class ToDoListController {
     @Autowired
     private TaskRepository taskRepository;
 
+    public ToDoListController(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
+
     @RequestMapping("/")
     public String index(){
         return (new Date()).toString() + " - Дата. Рандомное число = " + ((int)(Math.random() * 100));
@@ -24,21 +28,17 @@ public class ToDoListController {
 
     @PostMapping(value = "/tasks", consumes = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Task> createTask(@RequestBody Task task){
-        try {
-            Task newTask = new Task(task.getTitle(), task.getDescription());
-            taskRepository.save(newTask);
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }catch (NullPointerException e){
-            return ResponseEntity.notFound().build();
-        }
+        Task newTask = new Task(task.getTitle(), task.getDescription());
+        taskRepository.save(newTask);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
     @GetMapping("/tasks/{id}")
-    public ResponseEntity getInfoTask(@PathVariable long id){
+    public ResponseEntity<?> getInfoTask(@PathVariable long id){
             Optional<Task> taskOptional = taskRepository.findById(id);
             if(!taskOptional.isPresent()) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
-            return new ResponseEntity(taskOptional.get(), HttpStatus.OK);
+            return new ResponseEntity<>(taskOptional.get(), HttpStatus.OK);
 
     }
     @GetMapping("/tasks")
@@ -53,7 +53,7 @@ public class ToDoListController {
         }return new ResponseEntity<>(HttpStatus.I_AM_A_TEAPOT);
     }
     @PatchMapping(value = "/tasks/{id}" , consumes = MediaType.APPLICATION_JSON_VALUE)
-     public ResponseEntity<HttpStatus> updateTask(@PathVariable long id,@RequestParam("isDone") boolean isDone,@RequestParam("title") String title,@RequestParam("description") String description){
+     public ResponseEntity<?> updateTask(@PathVariable long id,@RequestParam("isDone") boolean isDone,@RequestParam("title") String title,@RequestParam("description") String description){
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();
@@ -67,7 +67,7 @@ public class ToDoListController {
         }
     }
     @DeleteMapping("/tasks/{id}")
-    public ResponseEntity<HttpStatus> deleteTask(@PathVariable long id){
+    public ResponseEntity<?> deleteTask(@PathVariable long id){
         Optional<Task> optionalTask = taskRepository.findById(id);
         if (optionalTask.isPresent()) {
             Task task = optionalTask.get();

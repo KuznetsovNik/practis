@@ -5,18 +5,21 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 @Entity
-@Table(name = "TASKS")
+@Table(name = "TASK")
 public class Task{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-
+    private long id;
+    @Column(name = "creation_time")
     private LocalDateTime creationTime;
+    @Column(name = "is_done")
     private boolean isDone;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
 
-    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+//    private DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     public Task() {
     }
@@ -28,11 +31,11 @@ public class Task{
         this.description = description;
     }
 
-    public Integer getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
