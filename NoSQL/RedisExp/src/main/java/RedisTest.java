@@ -15,7 +15,7 @@ public class RedisTest {
         }
         for(;;){
             redis.listUsers();
-            System.out.println("------------------------");
+            System.out.println("---");
             redis.lisWithoutDonateUsers();
            try{
                Thread.sleep(1000);
