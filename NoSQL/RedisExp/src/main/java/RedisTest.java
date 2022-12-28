@@ -1,4 +1,3 @@
-import static java.lang.System.out;
 
 public class RedisTest {
     private static final int USERS = 20;
@@ -16,7 +15,8 @@ public class RedisTest {
         }
         for(;;){
             redis.listUsers();
-            redis.donate();
+            System.out.println("------------------------");
+            redis.lisWithoutDonateUsers();
            try{
                Thread.sleep(1000);
            }catch (InterruptedException e){

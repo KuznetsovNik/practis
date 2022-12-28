@@ -6,10 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="jdbc-exp2" />
-        <module name="jdbc-exp" />
+        <module name="read-movements-csv" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="6" />
+    <bytecodeTargetLevel>
+      <module name="read-movements-csv" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>
