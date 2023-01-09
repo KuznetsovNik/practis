@@ -5,7 +5,6 @@ import org.redisson.client.RedisConnectionException;
 import org.redisson.config.Config;
 import java.util.Date;
 import java.util.Random;
-
 import static java.lang.System.out;
 
 public class RedisStorage {
@@ -32,28 +31,29 @@ public class RedisStorage {
     }
     void donate(String user){
         out.println("Пользователь " + user + " оплатил платную услугу");
-        out.println("- На главной странице показываем пользователя " + user + " Время для сортировки: " + usersMeetingWebsite.getScore(user));
+        out.println("- На главной странице показываем пользователя " + user);
         double scoreLast = usersMeetingWebsite.lastScore();
         usersMeetingWebsite.addScoreAsync(user, scoreLast + getTs());
     }
     public void listUsers() {
         int countUser = 0;
+        int repeatFirst = 0;
+        int repeatSecond = 0;
         for (String user : usersMeetingWebsite){
             Random r = new Random();
             String userId = String.valueOf(r.nextInt(19 + 1) + 1);
-            if (countUser == 5 || countUser == 15) {
+            if (countUser == 5) {
                 donate(userId);
+                repeatFirst = Integer.parseInt(userId);
+            }else if (countUser == 15){
+                donate(userId);
+                repeatSecond = Integer.parseInt(userId);
             }
-            out.println("- На главной странице показываем пользователя " + user + " Время для сортировки: " + usersMeetingWebsite.getScore(user));
-            usersMeetingWebsite.addScoreAsync(user, getTs() + 1);
+            if (repeatFirst != Integer.parseInt(user) && repeatSecond != Integer.parseInt(user)) {
+                out.println("- На главной странице показываем пользователя " + user);
+                usersMeetingWebsite.addScoreAsync(user, getTs() + 1);
+            }
             countUser++;
-        }
-    }
-
-    public void lisWithoutDonateUsers() {
-        out.println("Cписок очереди:");
-        for (String user : usersMeetingWebsite){
-            out.println("Пользователь " + user);
         }
     }
 
