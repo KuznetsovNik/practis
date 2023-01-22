@@ -1,10 +1,12 @@
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.concurrent.*;
 
 public class Loader {
     public static final int REGIONCOUNT = 100;
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
         long start = System.currentTimeMillis();
 
         ExecutorService executorService = Executors.newFixedThreadPool(5);
@@ -20,14 +22,27 @@ public class Loader {
         System.out.println((System.currentTimeMillis() - start) + " ms");
     }
 }
+/*
+// В run SBuilder,в padNumber:
+    //SBuilder(SBuilder возвр знач) 20c 19c 19c cp-19 ; (String возвр знач) 24c 36c 36c cp-32
+    //String(String возвр знач) 19c 19c 22c cp-20
+    //SBuffer(SBuffer возвр знач) 21c 20c 20c cp-20 ; (String возвр знач) 26c 25c 24c cp-25
+// В run SBuffer,в padNumber:
+    //SBuilder(SBuilder возвр знач) 22c 20c 22c cp-21 ; (String возвр знач) 26c 24c 27c cp-25
+    //String(String возвр знач) 21c 29c 29c cp-26
+    //SBuffer(SBuffer возвр знач) 23c 23c 23c cp-23c ; (String возвр знач) 27c 25c 25c cp-26
+ */
+
 class NumberWriter implements Runnable{
     private int from;
     private int to;
+
     private static String path = "res/numbers1.txt";
     public NumberWriter(int from, int to){
         this.from = from;
         this.to = to;
     }
+
     @Override
     public void run () {
         try {
@@ -71,15 +86,4 @@ class NumberWriter implements Runnable{
         return numberBuilder;
     }
 }
-/*
-// В run SBuilder,в padNumber:
-    //SBuilder(SBuilder возвр знач) 20c 19c 19c cp-19 ; (String возвр знач) 24c 36c 36c cp-32
-    //String(String возвр знач) 19c 19c 22c cp-20
-    //SBuffer(SBuffer возвр знач) 21c 20c 20c cp-20 ; (String возвр знач) 26c 25c 24c cp-25
-// В run SBuffer,в padNumber:
-    //SBuilder(SBuilder возвр знач) 22c 20c 22c cp-21 ; (String возвр знач) 26c 24c 27c cp-25
-    //String(String возвр знач) 21c 29c 29c cp-26
-    //SBuffer(SBuffer возвр знач) 23c 23c 23c cp-23c ; (String возвр знач) 27c 25c 25c cp-26
- */
-
 
