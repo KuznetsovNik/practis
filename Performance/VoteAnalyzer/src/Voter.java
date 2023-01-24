@@ -2,10 +2,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Voter {
-
     private String name;
     private Date birthDay;
-
     public Voter(String name, Date birthDay) {
         this.name = name;
         this.birthDay = birthDay;
