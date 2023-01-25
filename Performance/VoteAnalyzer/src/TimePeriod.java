@@ -22,7 +22,6 @@ public class TimePeriod implements Comparable<TimePeriod> {
         }
     }
 
-    //Конструктор Переиод времени ( Дато С, дата ДО)
     public TimePeriod(Date from, Date to) {
         this.from = from.getTime();
         this.to = to.getTime();

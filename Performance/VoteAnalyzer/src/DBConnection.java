@@ -20,8 +20,7 @@ public class DBConnection {
                         "name TINYTEXT NOT NULL, " +
                         "birthDate DATE NOT NULL, " +
                         "`count` INT NOT NULL, " +
-                        "PRIMARY KEY(id), " +
-                        "UNIQUE KEY name_date(name(50),birthDate))");
+                        "PRIMARY KEY(id), KEY(name(50)))");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -31,8 +30,7 @@ public class DBConnection {
 
     public static void executeMultiInsert() throws SQLException {
         String sql = "INSERT INTO voter_count(name, birthDate, `count`) " +
-                "VALUES" + insertQuery.toString() +
-                "ON DUPLICATE KEY UPDATE `count`=`count` + 1";
+                "VALUES " + insertQuery.toString();
         DBConnection.getConnection().createStatement().execute(sql);
     }
 
@@ -48,7 +46,7 @@ public class DBConnection {
     }
 
     public static void printVoterCounts() throws SQLException {
-        String sql = "SELECT name, birthDate, `count` FROM voter_count WHERE `count` > 1";
+        String sql = "SELECT name, birthDate, COUNT(*) `count` FROM voter_count GROUP BY name HAVING `count` > 1";
         ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
         while (rs.next()) {
             System.out.println("\t" + rs.getString("name") + " (" +
@@ -61,34 +59,3 @@ public class DBConnection {
         executeMultiInsert();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-    // countVoter old body
-
-//        String sql = "INSERT INTO voter_count(name, birthDate, `count`) +" +
-//                "VALUES('" + name + "', '"+ birthDay + "', 1) " +
-//                "ON DUPLICATE KEY UPDATE `count`=`count` + 1";
-//        DBConnection.getConnection().createStatement().execute(sql);
-
-//        String sql =
-//            "SELECT id FROM voter_count WHERE birthDate='" + birthDay + "' AND name='" + name + "'";
-//        ResultSet rs = DBConnection.getConnection().createStatement().executeQuery(sql);
-//        if (!rs.next()) {
-//            DBConnection.getConnection().createStatement()
-//                .execute("INSERT INTO voter_count(name, birthDate, `count`) VALUES('" +
-//                    name + "', '" + birthDay + "', 1)");
-//        } else {
-//            Integer id = rs.getInt("id");
-//            DBConnection.getConnection().createStatement()
-//                .execute("UPDATE voter_count SET `count`=`count`+1 WHERE id=" + id);
-//        }
-//        rs.close();
